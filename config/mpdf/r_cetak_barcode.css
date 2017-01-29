@@ -1,0 +1,36 @@
+/*Tabel*/
+@page {
+    margin: 5mm;
+    margin-left: 4mm;
+    sheet-size: 82mm 23mm;
+    /*sheet-size: 82mm015mm;*/
+/*    margin: 2px;
+    margin-left: 0px;
+    sheet-size: 82mm 25mm;*/
+    /*size: 40mm 20mm;*/
+ }
+ .barcode {
+    /*padding: 1.5mm;*/
+    margin-left: 2mm;
+    margin-right: 2mm;
+    vertical-align: top;
+}
+ table {
+  border-collapse: collapse;
+  font-size:12px;
+    /*border-spacing: 10px;*/
+        }       
+tr {
+  /*margin-right: 2px;*/
+
+}
+td {
+    width: 24mm;
+    height: 12mm;
+    /*margin-left: 4mm;*/
+    /*margin-right: 2mm;*/
+    /*margin: 0 1mm;*/
+    text-align: center;
+    vertical-align:middle; 
+    font-size:xx-small;
+}

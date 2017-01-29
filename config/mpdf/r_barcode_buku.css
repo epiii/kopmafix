@@ -1,0 +1,25 @@
+/*Tabel*/
+@page {
+    margin: 2px;
+/*    sheet-size: 104.8mm 68.8mm;
+    size: 90mm 54mm;*/
+ }
+/*table, th, td {
+    border: 0px solid black;
+    padding: 10px;
+} */
+table {
+    width: 100%;
+	border-collapse: collapse;
+  	font-size:18px;
+}       
+tr {
+    /*border-spacing: 10px;*/
+}
+td {
+    width: 24mm;
+    height: 12mm;
+    margin: 0 5mm;
+    text-align: center;
+    vertical-align:middle; 
+}
