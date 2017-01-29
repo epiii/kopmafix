@@ -1,4 +1,4 @@
-<?php
+	<?php
 	session_start();
 	include "config/koneksi.php";
 	include "config/library.php";
@@ -18,6 +18,7 @@
 			$s='select * from produk where id_produk='.$_POST['id_produk'];
 			$e=mysqli_query($con,$s);
 			$r=mysqli_fetch_assoc($e);
+			// pr($_SESSION);
 			echo json_encode($r[($_SESSION['levelmember']=='k'?'hargakoperasi':'hargaumum')]);
 		}elseif($_POST['aksi']=='stok'){
 			$s='SELECT

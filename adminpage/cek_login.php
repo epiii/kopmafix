@@ -13,15 +13,16 @@ function anti_injection($data){
 
 $username = anti_injection($_POST['username']);
 $pass     = anti_injection(md5($_POST['password']));
-// vd($pass);
 
 // pastikan username dan password adalah berupa huruf atau angka.
 if (!ctype_alnum($username) OR !ctype_alnum($pass)){
   echo "Sekarang loginnya tidak bisa di injeksi lho.";
- // vd($login);
 }else{
   $s="SELECT * FROM users WHERE username='$username' AND password='$pass' AND blokir='N'";
   if ($result = $dbc->query($s)) {
+    if ($result->num_rows==0) {
+      echo 'user id atau passwoord tidak ditemukan';
+    }else{
       $row_cnt = $result->num_rows;
       $r       = $result->fetch_assoc();
       session_start();
@@ -40,11 +41,11 @@ if (!ctype_alnum($username) OR !ctype_alnum($pass)){
       $sid_baru = session_id();
 
       // mysqli_query($con,"UPDATE users SET id_session='$sid_baru' WHERE username='$username'");
-      
       $ss="UPDATE login SET id_session='$sid_baru' WHERE username='$username'";
       $ee=$dbc->query($ss);
       header('location:media.php?module=home');
       $result->close();
+    }
   }else{
     include "error-login.php";
   }

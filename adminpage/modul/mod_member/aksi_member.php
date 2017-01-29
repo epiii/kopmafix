@@ -30,6 +30,7 @@ elseif ($module=='member' AND $act=='input'){
       $s='INSERT INTO kustomer SET 
                  alamat       ="'.$_POST['alamat'].'",
                  id_kota      ="'.$_POST['kota'].'",'.
+                 'kategori     = "'.$_POST['kategori'].'",'.
                  ($_POST['jurusan']==''?'':'id_jurusan="'.$_POST['jurusan'].'",').'
                  password     ="'.$pass.'",
                  nama_lengkap ="'.$_POST['nama_lengkap'].'",
@@ -42,6 +43,7 @@ elseif ($module=='member' AND $act=='input'){
 }else{
       $s='INSERT INTO kustomer SET 
                  alamat       ="'.$_POST['alamat'].'",
+                 kategori     = "'.$_POST['kategori'].'",
                  id_kota      ="'.$_POST['kota'].'",'.
                  ($_POST['jurusan']==''?'':'id_jurusan="'.$_POST['jurusan'].'",').'
                  password     ="'.$pass.'",

@@ -163,7 +163,8 @@ if(!isset($_SESSION['levelmember'])){
                     <th>Tgl Order</th>
                     <th>Barang</th>
                     <th>Jumlah</th>
-                    <th>Harga</th>
+                    <th>Harga Satuan</th>
+                    <th>Harga Diskon</th>
                     <th>Total</th>
                 </tr></thead>
                 <tbody>";
@@ -172,16 +173,16 @@ if(!isset($_SESSION['levelmember'])){
                         od.jumlah,
                         p.nama_produk,
                         o.tgl_order,
-                        p.hargakoperasi,    
-                        p.hargaumum,    
-                        (p.harga*od.jumlah)total
+                        p.harga,
+                        od.jumlah,
+                        p.diskon
                     FROM
                         orders o 
                         JOIN orders_detail od on od.id_orders = o.id_orders
                         JOIN produk p on p.id_produk = od.id_produk 
                     WHERE
                         o.id_kustomer ='.$_SESSION['idmember'];
-                // vd($s);
+                // pr($s);
                 $tampil=mysqli_query($con,$s);
                 if(mysqli_num_rows($tampil)==0){
                     echo '<tr>
@@ -195,14 +196,16 @@ if(!isset($_SESSION['levelmember'])){
                 }else{
                     $no=1;
                     while ($r=mysqli_fetch_assoc($tampil)){
-                        $harga=$_SESSION['levelmember']=='k'?'hargakoperasi':'hargaumum';
-                            // var_dump($harga);exit();
-                            echo "<tr><td>$no</td>
+                        $hargasatuan =$r['harga'];
+                        $hargadiskon =$hargasatuan-($hargasatuan*$r['diskon']/100);
+                        $hargatotal  =$hargadiskon*$r['jumlah'];
+                        echo "<tr><td>$no</td>
                                 <td>".tgl_indo($r['tgl_order'])."</td>                
                                 <td>$r[nama_produk]</td>                
                                 <td>$r[jumlah]</td>                
-                                <td>Rp. ".format_rupiah($r[$harga])."</td>                
-                                <td>Rp. ".format_rupiah($r['total']*$harga)."</td>                
+                                <td>Rp. ".format_rupiah($hargasatuan)."</td>                
+                                <td>Rp. ".format_rupiah($hargadiskon)."</td>                
+                                <td>Rp. ".format_rupiah($hargatotal)."</td>                
                             </td>
                         </tr>";
                         $no++;
