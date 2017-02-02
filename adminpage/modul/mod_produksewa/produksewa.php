@@ -64,7 +64,21 @@ switch($act){
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead><tbody>";
-    $s='SELECT * FROM produk where tipe="s" ORDER BY id_produk DESC';
+    $s='SELECT
+            p.*,
+            p.stok total,
+            (p.stok-IFNULL(s.terpinjam,0))stok
+        FROM produk p
+            LEFT JOIN (
+                SELECT 
+                    s.id_produk,
+                    (SELECT stok FROM produk WHERE id_produk=s.id_produk)kuota,
+                    SUM(s.total)terpinjam
+                FROM orders_detail_sewa s 
+                WHERE s.status!="k"
+                GROUP BY s.id_produk
+            )s on s.id_produk = p.id_produk
+        WHERE p.tipe="s" ';
     // vd($s);
     $tampil = mysqli_query($con,$s);
 
@@ -79,7 +93,7 @@ switch($act){
                 <td>Per $r[durasi] ".($r['jenisdurasi']=='h'?' hari':'jam')."</td>
                 <td>$hargaKop</td>
                 <td>$hargaMum</td>
-                <td>$r[stok]</td>
+                <td>$r[total]</td>
                 <td>$r[stok]</td>
                 <td class='center'>
 		         <a class='btn btn-info' href='?module=produksewa&act=editproduksewa&id=$r[id_produk]'>

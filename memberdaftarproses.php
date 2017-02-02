@@ -9,5 +9,5 @@
                 password= "'.md5($_POST['password']).'"';
         $q=mysqli_query($con,$s);
         $id_login=mysqli_insert_id($con)();
-        vd($id_login);
+        // vd($id_login);
     }

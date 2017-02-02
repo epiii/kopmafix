@@ -22,7 +22,8 @@
 			echo json_encode($r[($_SESSION['levelmember']=='k'?'hargakoperasi':'hargaumum')]);
 		}elseif($_POST['aksi']=='stok'){
 			$s='SELECT
-					p.stok total,(p.stok-IFNULL(s.terpinjam,0))stok
+					p.stok total,
+					(p.stok-IFNULL(s.terpinjam,0))stok
 				FROM produk p
 					LEFT JOIN (
 						SELECT 
