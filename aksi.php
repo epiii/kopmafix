@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 //error_reporting(0);
@@ -13,7 +12,7 @@ if ($module=='keranjang' AND $act=='tambah'){
 	$sid = session_id();
 	$sql2 = mysqli_query($con,"SELECT stok FROM produk WHERE id_produk='$_GET[id]'");
 	$r=mysqli_fetch_array($sql2);
-	$stok=$r[stok];
+	$stok=$r['stok'];
 	if ($stok == 0){
 	  echo "stok habis";
 	}

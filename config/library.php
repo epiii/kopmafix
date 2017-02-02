@@ -52,4 +52,9 @@
 		}return $str;
 	}
 
+	function updateStokTransaksi($idProduk,$jumlah){
+		global $con;
+		$s = 'UPDATE produk set stok = stok-'.$jumlah.' WHERE id_produk = '.$idProduk;
+		$e = mysqli_query($con,$s);
+	}
 ?>

@@ -72,6 +72,7 @@ switch($act){
     // $no = $posisi+1;
     $no=1;
     while($r=mysqli_fetch_assoc($tampil)){
+        // pr($r);
       $tanggal=tgl_indo($r['tgl_masuk']);
       $harga=format_rupiah($r['harga']);
       echo "
@@ -84,16 +85,15 @@ switch($act){
                 <td>$tanggal</td>
                 <td class='center'>
 		         <a class='btn btn-info' href='?module=produk&act=editproduk&id=$r[id_produk]'>
-										<i class='icon-edit icon-white'></i>  
-										Edit                                            
-									</a>
-									<a class='btn btn-danger' href='$aksi?module=produk&act=hapus&id=$r[id_produk]'>
-										<i class='icon-trash icon-white'></i> 
-										Delete
-									</a>
-								</td>
-		            
-		        </tr>";
+					<i class='icon-edit icon-white'></i>  
+					Edit                                            
+				</a>
+				<a class='btn btn-danger' href='$aksi?module=produk&act=hapus&id=$r[id_produk]'>
+					<i class='icon-trash icon-white'></i> 
+					Delete
+				</a>
+			</td>
+        </tr>";
       $no++;
     }
     echo "</tbody></table>";

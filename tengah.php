@@ -358,6 +358,7 @@ $jml          = count($isikeranjang);
 for ($i = 0; $i < $jml; $i++){
   mysqli_query($con,"INSERT INTO orders_detail(id_orders, id_produk, jumlah) 
                VALUES('$id_orders',{$isikeranjang[$i]['id_produk']}, {$isikeranjang[$i]['jumlah']})");
+  updateStokTransaksi($isikeranjang[$i]['id_produk'],$isikeranjang[$i]['jumlah']);
 }
   
 // setelah data pemesanan tersimpan, hapus data pemesanan di tabel pemesanan sementara (orders_temp)
@@ -548,6 +549,7 @@ elseif ($_GET['module']=='simpantransaksimember'){
     for ($i = 0; $i < $jml; $i++){
       mysqli_query($con,"INSERT INTO orders_detail(id_orders, id_produk, jumlah) 
                    VALUES('$id_orders',{$isikeranjang[$i]['id_produk']}, {$isikeranjang[$i]['jumlah']})");
+      updateStokTransaksi($isikeranjang[$i]['id_produk'],$isikeranjang[$i]['jumlah']);
     }
       
     // setelah data pemesanan tersimpan, hapus data pemesanan di tabel pemesanan sementara (orders_temp)
